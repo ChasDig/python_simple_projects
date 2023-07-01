@@ -35,7 +35,7 @@ def check_secret_character_length(secret_character_length: str) -> int:
     secret_character_length = int(secret_character_length)
     while True:
         if (secret_character_length > 6) or (secret_character_length < 3):
-            secret_character_length = int(input("Введите количество цифр в искомом числе (минимум - 3, максимум - 6): "))
+            secret_character_length = int(input("Введите количество цифр в искомом числе (мин. - 3, макс. - 6): "))
         else:
             break
     return secret_character_length
@@ -90,12 +90,10 @@ def check_secret_number(input_number: str, secret_number: list):
 
 def start_game():
     number_of_attempts, secret_character_length = input_user_data()
-    check_exit(input_user=secret_character_length)
-    check_exit(input_user=number_of_attempts)
     len_secret_number = check_secret_character_length(secret_character_length)
     number_of_attempts = check_number_of_attempts(number_of_attempts)
     secret_number = create_secret_number(len_secret_number=len_secret_number)
-    print(secret_number)
+    print("[!] Секретное число: ", secret_number)
     result_check = ""
     attempt = 1
     while result_check != "Угадал":
@@ -106,7 +104,6 @@ def start_game():
             print(f"Длина вашего номера не равна длине загаданного числа. "
                   f"Длина загаданного числа - {len(secret_number)}")
         else:
-            check_exit(input_user=secret_character_length)
             result_check = check_secret_number(input_number, secret_number)
             print("Результат: ", result_check)
             attempt += 1
